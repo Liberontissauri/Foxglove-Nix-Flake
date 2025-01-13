@@ -6,7 +6,7 @@
   outputs = { self, nixpkgs }: 
   let 
     pkgs_amd64_linux = import nixpkgs { system = "x86_64-linux"; };
-    pkgs_arm64_linux = import nixpkgs { system = "arm64-linux"; };
+    pkgs_aarch64_linux = import nixpkgs { system = "aarch64-linux"; };
   in 
   {
     packages.x86_64-linux.default = pkgs_amd64_linux.stdenv.mkDerivation {
@@ -52,17 +52,17 @@
         platforms = platforms.linux;
       };
     };
-    packages.arm_64-linux.default = pkgs_arm64_linux.stdenv.mkDerivation {
+    packages.aarch64-linux.default = pkgs_aarch64_linux.stdenv.mkDerivation {
       pname = "foxglove-studio";
       version = "latest";
 
       src = builtins.fetchurl {
         url = "https://get.foxglove.dev/desktop/latest/foxglove-studio-latest-linux-amd64.deb";
-        sha256 = "00qvx430pia69kvj8f8jvxvkh8x13hymxy7k59pd4z4l5wciwdr4"; # Replace if incorrect
+        sha256 = "1vjrk1w88yydrs6cwffp52xaknhm02b5s0cdxzrvsqf6n058cdrn"; # Replace if incorrect
       };
 
-      nativeBuildInputs = [ pkgs_arm64_linux.dpkg pkgs_arm64_linux.autoPatchelfHook ];
-      buildInputs = with pkgs_arm64_linux; [
+      nativeBuildInputs = [ pkgs_aarch64_linux.dpkg pkgs_aarch64_linux.autoPatchelfHook ];
+      buildInputs = with pkgs_aarch64_linux; [
       alsa-lib
       atk
       cairo
@@ -81,6 +81,7 @@
         mv "./extracted/opt/Foxglove Studio" "$out/Foxglove Studio"
         rm -rf "./extracted/opt/Foxglove Studio"
         mkdir -p $out/bin
+	chmod +X $out/Foxglove\ Studio/foxglove-studio
         ln -s $out/Foxglove\ Studio/foxglove-studio $out/bin/foxglove-studio
       '';
 
