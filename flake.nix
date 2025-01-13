@@ -57,8 +57,8 @@
       version = "latest";
 
       src = builtins.fetchurl {
-        url = "https://get.foxglove.dev/desktop/latest/foxglove-studio-latest-linux-amd64.deb";
-        sha256 = "1vjrk1w88yydrs6cwffp52xaknhm02b5s0cdxzrvsqf6n058cdrn"; # Replace if incorrect
+        url = "https://get.foxglove.dev/desktop/latest/foxglove-studio-latest-linux-arm64.deb";
+        sha256 = "00qvx430pia69kvj8f8jvxvkh8x13hymxy7k59pd4z4l5wciwdr4"; # Replace if incorrect
       };
 
       nativeBuildInputs = [ pkgs_aarch64_linux.dpkg pkgs_aarch64_linux.autoPatchelfHook ];
@@ -81,7 +81,7 @@
         mv "./extracted/opt/Foxglove Studio" "$out/Foxglove Studio"
         rm -rf "./extracted/opt/Foxglove Studio"
         mkdir -p $out/bin
-	chmod +X $out/Foxglove\ Studio/foxglove-studio
+        chmod +X $out/Foxglove\ Studio/foxglove-studio
         ln -s $out/Foxglove\ Studio/foxglove-studio $out/bin/foxglove-studio
       '';
 
