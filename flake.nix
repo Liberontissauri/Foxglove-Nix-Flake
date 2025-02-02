@@ -15,7 +15,7 @@
 
       src = builtins.fetchurl {
         url = "https://get.foxglove.dev/desktop/latest/foxglove-studio-latest-linux-amd64.deb";
-        sha256 = "1vjrk1w88yydrs6cwffp52xaknhm02b5s0cdxzrvsqf6n058cdrn"; # Replace if incorrect
+        sha256 = "06hl2v7cwmkx1422zaqx5pbviw7iqydvkwdvcy157r1bbsvr302f"; # Replace if incorrect
       };
 
       nativeBuildInputs = [ pkgs_amd64_linux.dpkg pkgs_amd64_linux.autoPatchelfHook ];
